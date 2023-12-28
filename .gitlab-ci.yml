@@ -1,0 +1,17 @@
+image: node:16
+
+variables:
+  NPM_TOKEN: ${CI_JOB_TOKEN}
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    # - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    # - echo "${CI_API_V4_URL#http?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}" >> .npmrc
+    - cat .npmrc
+    - yarn install --frozen-lockfile --cache-folder .yarn-cache
+    - yarn build
+    - npm publish
