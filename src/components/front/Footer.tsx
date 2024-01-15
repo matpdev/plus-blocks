@@ -34,6 +34,12 @@ export interface IFooterProps {
     youtube?: {
       url: string;
     };
+    pinterest?: {
+      url: string;
+    };
+    threads?: {
+      url: string;
+    };
   };
   links?: {
     terms?: string;
@@ -42,6 +48,7 @@ export interface IFooterProps {
     partners?: string;
   };
   dpoName: string;
+  dpoDesc: string;
 }
 export interface IRoutesFProps {
   title: string;
@@ -73,6 +80,7 @@ export default function Footer({
   fontHeaderClassNames,
   company,
   mailToHref,
+  dpoDesc,
 }: IFooterProps) {
   const fontTheme = classnames(
     'flex flex-col space-y-2 text-sm',
@@ -146,6 +154,46 @@ export default function Footer({
                           fillRule="evenodd"
                           d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
                           clipRule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  )}
+                  {socialMedia.pinterest && (
+                    <a className={socialMediaTheme} href={socialMedia.pinterest.url} target="_blank" rel="noreferrer">
+                      <span className="sr-only"> Pinterest </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        shape-rendering="geometricPrecision"
+                        text-rendering="geometricPrecision"
+                        image-rendering="optimizeQuality"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        viewBox="0 0 512 512"
+                      >
+                        <path
+                          fill-rule="nonzero"
+                          fill="currentColor"
+                          d="M0 256c0 109.29 68.5 202.6 164.91 239.32-2.35-19.99-4.84-52.95.53-76.07 4.63-19.89 29.89-126.68 29.89-126.68s-7.62-15.25-7.62-37.85c0-35.41 20.53-61.87 46.11-61.87 21.76 0 32.25 16.33 32.25 35.89 0 21.87-13.93 54.55-21.12 84.87-5.99 25.36 12.74 46.05 37.74 46.05 45.29 0 80.13-47.77 80.13-116.71 0-61.04-43.86-103.68-106.48-103.68-72.48 0-115.04 54.38-115.04 110.59 0 21.91 8.42 45.38 18.96 58.16a7.568 7.568 0 012.07 5.21c0 .7-.1 1.41-.29 2.09-1.94 8.07-6.26 25.37-7.08 28.9-1.13 4.65-3.69 5.66-8.54 3.4-31.82-14.81-51.71-61.34-51.71-98.71 0-80.41 58.4-154.22 168.36-154.22 88.41 0 157.13 63 157.13 147.18 0 87.83-55.37 158.53-132.25 158.53-25.84 0-50.09-13.45-58.41-29.3 0 0-12.78 48.68-15.88 60.59-6.01 23.13-22.7 52.39-33.04 69.01 23.84 7.36 49.14 11.3 75.38 11.3 141.38 0 256-114.63 256-256S397.38 0 256 0 0 114.62 0 256z"
+                        />
+                      </svg>
+                    </a>
+                  )}
+                  {socialMedia.threads && (
+                    <a className={socialMediaTheme} href={socialMedia.threads.url} target="_blank" rel="noreferrer">
+                      <span className="sr-only"> Threads </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        shape-rendering="geometricPrecision"
+                        text-rendering="geometricPrecision"
+                        image-rendering="optimizeQuality"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        viewBox="0 0 512 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          fill-rule="nonzero"
+                          d="M337.36 243.58c-1.46-.7-2.95-1.38-4.46-2.02-2.62-48.36-29.04-76.05-73.41-76.33-25.6-.17-48.52 10.27-62.8 31.94l24.4 16.74c10.15-15.4 26.08-18.68 37.81-18.68h.4c14.61.09 25.64 4.34 32.77 12.62 5.19 6.04 8.67 14.37 10.39 24.89-12.96-2.2-26.96-2.88-41.94-2.02-42.18 2.43-69.3 27.03-67.48 61.21.92 17.35 9.56 32.26 24.32 42.01 12.48 8.24 28.56 12.27 45.26 11.35 22.07-1.2 39.37-9.62 51.45-25.01 9.17-11.69 14.97-26.84 17.53-45.92 10.51 6.34 18.3 14.69 22.61 24.73 7.31 17.06 7.74 45.1-15.14 67.96-20.04 20.03-44.14 28.69-80.55 28.96-40.4-.3-70.95-13.26-90.81-38.51-18.6-23.64-28.21-57.79-28.57-101.5.36-43.71 9.97-77.86 28.57-101.5 19.86-25.25 50.41-38.21 90.81-38.51 40.68.3 71.76 13.32 92.39 38.69 10.11 12.44 17.73 28.09 22.76 46.33l28.59-7.63c-6.09-22.45-15.67-41.8-28.72-57.85-26.44-32.53-65.1-49.19-114.92-49.54h-.2c-49.72.35-87.96 17.08-113.64 49.73-22.86 29.05-34.65 69.48-35.04 120.16v.24c.39 50.68 12.18 91.11 35.04 120.16 25.68 32.65 63.92 49.39 113.64 49.73h.2c44.2-.31 75.36-11.88 101.03-37.53 33.58-33.55 32.57-75.6 21.5-101.42-7.94-18.51-23.08-33.55-43.79-43.48zm-76.32 71.76c-18.48 1.04-37.69-7.26-38.64-25.03-.7-13.18 9.38-27.89 39.78-29.64 3.48-.2 6.9-.3 10.25-.3 11.04 0 21.37 1.07 30.76 3.13-3.5 43.74-24.04 50.84-42.15 51.84z"
                         />
                       </svg>
                     </a>
@@ -237,6 +285,49 @@ export default function Footer({
                         </svg>
                       </a>
                     )}
+                    {socialMedia.pinterest && (
+                      <a className={socialMediaTheme} href={socialMedia.pinterest.url} target="_blank" rel="noreferrer">
+                        <span className="sr-only"> Pinterest </span>
+                        <svg
+                          width="24"
+                          height="24"
+                          id="Layer_2"
+                          data-name="Layer 2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          imageRendering="optimizeQuality"
+                          shapeRendering="geometricPrecision"
+                          textRendering="geometricPrecision"
+                        >
+                          <path
+                            d="M0,12c0,5.12,3.21,9.5,7.73,11.22-.11-.94-.23-2.48.02-3.57.22-.93,1.4-5.94,1.4-5.94,0,0-.36-.71-.36-1.77,0-1.66.96-2.9,2.16-2.9,1.02,0,1.51.77,1.51,1.68,0,1.03-.65,2.56-.99,3.98-.28,1.19.6,2.16,1.77,2.16,2.12,0,3.76-2.24,3.76-5.47,0-2.86-2.06-4.86-4.99-4.86-3.4,0-5.39,2.55-5.39,5.18,0,1.03.39,2.13.89,2.73.06.07.1.15.1.24,0,.03,0,.07-.01.1-.09.38-.29,1.19-.33,1.35-.05.22-.17.27-.4.16-1.49-.69-2.42-2.88-2.42-4.63,0-3.77,2.74-7.23,7.89-7.23,4.14,0,7.37,2.95,7.37,6.9s-2.6,7.43-6.2,7.43c-1.21,0-2.35-.63-2.74-1.37,0,0-.6,2.28-.74,2.84-.28,1.08-1.06,2.46-1.55,3.23,1.12.34,2.3.53,3.53.53,6.63,0,12-5.37,12-12S18.63,0,12,0,0,5.37,0,12Z"
+                            fill="currentColor"
+                            stroke-width="0"
+                          />
+                        </svg>
+                      </a>
+                    )}
+                    {socialMedia.threads && (
+                      <a className={socialMediaTheme} href={socialMedia.threads.url} target="_blank" rel="noreferrer">
+                        <span className="sr-only"> Threads </span>
+                        <svg
+                          width="24"
+                          height="24"
+                          id="Layer_2"
+                          data-name="Layer 2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 27.9"
+                          imageRendering="optimizeQuality"
+                          shapeRendering="geometricPrecision"
+                          textRendering="geometricPrecision"
+                        >
+                          <path
+                            d="M18.68,12.93c-.12-.06-.24-.11-.37-.17-.22-3.97-2.38-6.24-6.02-6.26-2.1-.01-3.98.84-5.15,2.62l2,1.37c.83-1.26,2.14-1.53,3.1-1.53.01,0,.02,0,.03,0,1.2,0,2.1.36,2.69,1.04.43.49.71,1.18.85,2.04-1.06-.18-2.21-.24-3.44-.17-3.46.2-5.69,2.22-5.54,5.02.08,1.42.78,2.65,2,3.45,1.02.68,2.34,1.01,3.71.93,1.81-.1,3.23-.79,4.22-2.05.75-.96,1.23-2.2,1.44-3.77.86.52,1.5,1.21,1.85,2.03.6,1.4.64,3.7-1.24,5.58-1.64,1.64-3.62,2.35-6.61,2.38-3.31-.02-5.82-1.09-7.45-3.16-1.53-1.94-2.31-4.74-2.34-8.33.03-3.59.82-6.39,2.34-8.33,1.63-2.07,4.14-3.13,7.45-3.16,3.34.02,5.89,1.09,7.58,3.17.83,1.02,1.46,2.3,1.87,3.8l2.35-.63c-.5-1.84-1.29-3.43-2.36-4.75C19.47,1.4,16.3.03,12.21,0h-.02C8.12.03,4.98,1.4,2.88,4.08,1,6.46.03,9.78,0,13.94h0s0,.02,0,.02c.03,4.16,1,7.47,2.87,9.86,2.11,2.68,5.24,4.05,9.32,4.08h.02c3.63-.03,6.18-.97,8.29-3.08,2.76-2.75,2.67-6.2,1.76-8.32-.65-1.52-1.89-2.75-3.59-3.57h0ZM12.41,18.82c-1.52.09-3.09-.6-3.17-2.05-.06-1.08.77-2.29,3.26-2.43.29-.02.57-.02.84-.02.91,0,1.75.09,2.52.26-.29,3.59-1.97,4.17-3.46,4.25h0Z"
+                            stroke-width="0"
+                          />
+                        </svg>
+                      </a>
+                    )}
                     {socialMedia.twitter && (
                       <a className={socialMediaTheme} href={socialMedia.twitter.url} target="_blank" rel="noreferrer">
                         <span className="sr-only"> Twitter </span>
@@ -309,7 +400,7 @@ export default function Footer({
             </div>
             <div className="max-w-xs sm-mw:mb-8">
               <p className="mb-6 max-w-xs text-center text-sm font-light text-white">
-                Nosso Encarregado pelo tratamento de Dados Pessoais (DPO):
+                {dpoDesc ?? 'Nosso Encarregado pelo tratamento de Dados Pessoais (DPO):'}
               </p>
               <p className="max-w-xs text-center text-base font-semibold text-white">{dpoName}</p>
             </div>
