@@ -18,6 +18,7 @@ export interface IFooterProps {
   darkLogo: string;
   lightLogo: string;
   subDescription?: string;
+  iconSize?: string;
   socialMedia?: {
     facebook?: {
       url: string;
@@ -47,8 +48,14 @@ export interface IFooterProps {
     about?: string;
     partners?: string;
   };
+  texts?: {
+    contact?: string;
+    politics?: string;
+    about?: string;
+    partners?: string;
+  };
   dpoName: string;
-  dpoDesc: string;
+  dpoDesc?: string;
 }
 export interface IRoutesFProps {
   title: string;
@@ -81,6 +88,8 @@ export default function Footer({
   company,
   mailToHref,
   dpoDesc,
+  iconSize,
+  texts,
 }: IFooterProps) {
   const fontTheme = classnames(
     'flex flex-col space-y-2 text-sm',
@@ -250,7 +259,7 @@ export default function Footer({
             <div className="md:mr-5 md:flex md:flex-col md:items-center">
               <img
                 src={theme == 'dark' ? darkLogo : lightLogo}
-                className="h-6 sm:h-12 md:mr-5 md:h-16 sm-mw:mb-8 sm-mw:h-12"
+                className={classnames('h-6 sm:h-12 md:mr-5 md:h-16 sm-mw:mb-8 sm-mw:h-12', iconSize)}
                 alt="logo"
               />
               {subDescription && (
@@ -364,7 +373,7 @@ export default function Footer({
               <div className="flex flex-col items-center sm-mw:mb-8">
                 <div className="mb-3 flex items-center justify-between text-center">
                   <a href={links.politics} className={classnames(fontTheme, 'underline')}>
-                    Política de privacidade
+                    {texts.politics ?? 'Política de privacidade'}
                   </a>
                   <div
                     className="mx-3"
@@ -376,12 +385,12 @@ export default function Footer({
                     }}
                   ></div>
                   <a href={mailToHref} className={classnames(fontTheme, 'underline')}>
-                    Contato editorial
+                    {texts.contact ?? 'Contato editorial'}
                   </a>
                 </div>
                 <div className="flex items-center justify-between text-center">
                   <a href={`${mailToHref}`} className={classnames(fontTheme, 'underline')}>
-                    Parcerias comerciais
+                    {texts.partners ?? 'Parcerias comerciais'}
                   </a>
                   <div
                     className="mx-3"

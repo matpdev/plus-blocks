@@ -202,6 +202,9 @@ export default function Header({
               style={{
                 color: unFocusColor ?? 'white',
               }}
+              onClick={() => {
+                setIsOpenMobile(false);
+              }}
             >
               {y.title}
             </a>
@@ -286,22 +289,21 @@ export default function Header({
             )}
           </div>
         </nav>
-      </header>
-      <div role="dialog" aria-modal="true" className="relative">
-        <div
-          className={classnames(
-            `absolute  ${
-              isOpenMobile ? 'z-10' : '-z-10'
-            }  overflow-y-auto duration-300 ease-in-out sm:w-1/3 sm:ring-1 sm:ring-gray-900/10 md:w-1/3 lg:w-1/4 sm-mw:w-10/12`,
-            className?.dialogClass,
-          )}
-          style={{
-            maxHeight: 'calc(100vh - 200px)',
-            top: isOpenMobile == true ? '0' : '-100vh',
-            backgroundColor: theme == 'dark' ? backgroundColorD ?? '#000000E5' : backgroundColorL ?? 'bg-white',
-          }}
-        >
-          {/* <div className="flex items-center justify-between">
+        <div role="dialog" aria-modal="true" className="relative">
+          <div
+            className={classnames(
+              `absolute  ${
+                isOpenMobile ? 'z-10' : '-z-10'
+              }  overflow-y-auto duration-300 ease-in-out sm:w-1/3 sm:ring-1 sm:ring-gray-900/10 md:w-1/3 lg:w-1/4 sm-mw:w-10/12`,
+              className?.dialogClass,
+            )}
+            style={{
+              maxHeight: 'calc(100vh - 200px)',
+              top: isOpenMobile == true ? '0' : '-100vh',
+              backgroundColor: theme == 'dark' ? backgroundColorD ?? '#000000E5' : backgroundColorL ?? 'bg-white',
+            }}
+          >
+            {/* <div className="flex items-center justify-between">
             <button
               type="button"
               className={classnames(
@@ -325,68 +327,69 @@ export default function Header({
               </svg>
             </button>
           </div> */}
-          <div className="flow-root">
-            <div className="divide-y divide-gray-500/10">
-              <div className="space-y-2 ">{routesState.map((x, y) => returnRoutes(x, y))}</div>
-              {haveLogin && (
-                <div className="py-6">
-                  <Button
-                    link="#"
-                    className={classnames(
-                      '-mx-3 block cursor-pointer rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900',
-                      className?.linkClass,
-                    )}
-                  >
-                    Log in
-                  </Button>
-                </div>
-              )}
+            <div className="flow-root">
+              <div className="divide-y divide-gray-500/10">
+                <div className="space-y-2 ">{routesState.map((x, y) => returnRoutes(x, y))}</div>
+                {haveLogin && (
+                  <div className="py-6">
+                    <Button
+                      link="#"
+                      className={classnames(
+                        '-mx-3 block cursor-pointer rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900',
+                        className?.linkClass,
+                      )}
+                    >
+                      Log in
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div role="dialog" aria-modal="true" className="relative">
-        <div
-          className={classnames(
-            `absolute  ${
-              isSearchEnable ? 'z-10' : '-z-10'
-            }  w-full overflow-y-auto duration-300 ease-in-out sm:w-1/3 sm:ring-1 sm:ring-gray-900/10 md:w-1/3 lg:w-1/4 sm-mw:!w-full`,
-            className?.dialogClass,
-          )}
-          style={{
-            width: 'max-content',
-            height: '60px',
-            top: isSearchEnable == true ? '2px' : '-100vh',
-            backgroundColor: theme == 'dark' ? backgroundColorD ?? '#000000E5' : backgroundColorL ?? 'bg-white',
-            left: 0,
-          }}
-        >
-          <form
-            className={`relative h-full w-full transition-all md:max-w-xs `}
-            onSubmit={(e) => {
-              e.preventDefault();
-              let searched = searchText;
-              setIsSearchEnable(false);
-              setSearchText('');
-              if (searchText != null) return onSubmit(searched);
+        <div role="dialog" aria-modal="true" className="relative">
+          <div
+            className={classnames(
+              `absolute  ${
+                isSearchEnable ? 'z-10' : '-z-10'
+              }  w-full overflow-y-auto duration-300 ease-in-out sm:w-1/3 sm:ring-1 sm:ring-gray-900/10 md:w-1/3 lg:w-1/4 sm-mw:!w-full`,
+              className?.dialogClass,
+            )}
+            style={{
+              width: 'max-content',
+              height: '60px',
+              top: isSearchEnable == true ? '2px' : '-100vh',
+              backgroundColor: theme == 'dark' ? backgroundColorD ?? '#000000E5' : backgroundColorL ?? 'bg-white',
+              left: 0,
             }}
           >
-            <input
-              className={classnames('h-full w-full px-4', `placeholder:text-primary`)}
-              type="text"
-              name="search"
-              placeholder="Buscar"
-              onChange={(e) => {
-                setSearchText(e.target.value);
+            <form
+              className={`relative h-full w-full transition-all md:max-w-xs `}
+              onSubmit={(e) => {
+                e.preventDefault();
+                let searched = searchText;
+                setIsSearchEnable(false);
+                setSearchText('');
+                if (searchText != null) return onSubmit(searched);
               }}
-              style={{
-                backgroundColor: theme == 'dark' ? backgroundColorD : backgroundColorL,
-                color: placeholderColor,
-              }}
-            />
-          </form>
+            >
+              <input
+                className={classnames('h-full w-full px-4', `placeholder:text-primary`)}
+                type="text"
+                name="search"
+                placeholder="Buscar"
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
+                style={{
+                  backgroundColor: theme == 'dark' ? backgroundColorD : backgroundColorL,
+                  color: placeholderColor,
+                }}
+              />
+            </form>
+          </div>
         </div>
-      </div>
+      </header>
     </>
   );
 }
