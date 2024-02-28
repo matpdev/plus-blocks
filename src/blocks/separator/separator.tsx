@@ -1,12 +1,13 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 interface ISeparator {
   width?: 'full' | 'xl' | 'lg' | 'md';
   classnames?: string;
+  style?: CSSProperties;
 }
 
-export default function Separator({ width, classnames }: ISeparator) {
+export default function Separator({ width, classnames, style }: ISeparator) {
   let widthPreset = 'w-full';
 
   switch (width) {
@@ -24,5 +25,5 @@ export default function Separator({ width, classnames }: ISeparator) {
       break;
   }
 
-  return <div className={classNames('h-px bg-black', widthPreset, 'my-6', classnames)}></div>;
+  return <div className={classNames('h-px bg-black', widthPreset, 'my-6', classnames)} style={style}></div>;
 }

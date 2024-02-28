@@ -122,3 +122,6 @@ dist
 
 .idea/
 .lib
+
+.npmrc
+..npmrc
