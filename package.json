@@ -1,5 +1,5 @@
 {
-  "name": "plus-blocks",
+  "name": "@casa-pino/plus-blocks",
   "version": "1.2.4",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,7 +15,8 @@
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/@casa-pino"
   },
   "repository": "git@gitlab.com:morphcore/plus-blocks.git",
   "devDependencies": {
